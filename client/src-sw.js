@@ -5,10 +5,13 @@ const { CacheableResponsePlugin } = require('workbox-cacheable-response');
 const { ExpirationPlugin } = require('workbox-expiration');
 const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
+const PAGE_CACHE_NAME = 'page-cache';
+const ASSET_CACHE_NAME = 'asset-cache';
+
 precacheAndRoute(self.__WB_MANIFEST);
 
 const pageCache = new CacheFirst({
-  cacheName: 'page-cache',
+  cacheName: PAGE_CACHE_NAME,
   plugins: [
     new CacheableResponsePlugin({
       statuses: [0, 200],
@@ -25,9 +28,7 @@ offlineFallback({
     mode: 'navigate',
   },
   fallback: {
-    strategy: pageCache, 
-    options: {
-    }
+    strategy: pageCache,
   }
 });
 
@@ -42,7 +43,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 registerRoute(
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
   new StaleWhileRevalidate({
-    cacheName: 'asset-cache',
+    cacheName: ASSET_CACHE_NAME,
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
