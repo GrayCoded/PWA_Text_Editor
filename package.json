@@ -9,7 +9,7 @@
     "server": "cd server node server.js --ignore client",
     "install": "cd server && npm i && cd ../client && npm i",
     "client": "cd client && npm start",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
