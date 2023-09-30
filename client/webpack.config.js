@@ -19,7 +19,7 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'IndexedDB Demo'
+        title: 'Webpack Plugin'
       }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',
