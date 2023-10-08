@@ -15,17 +15,18 @@ butInstall.addEventListener('click', () => {
     if (installPrompt) {
         installPrompt.prompt();
 
-        installPrompt.userChoice.then((selected) => {
-            if (selected.outcome === 'accepted') {
-                console.log('Installation prompt accepted');
+        installPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the installation');
             } else {
-                console.log('Installation prompt dismissed');
+                console.log('User dismissed the installation');
             }
             installPrompt = null;
             butInstall.style.display = 'none';
         });
     }
 });
+
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener('appinstalled', (event) => {
